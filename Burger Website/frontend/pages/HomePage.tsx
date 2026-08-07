@@ -6,43 +6,43 @@ import gsap from "gsap";
 
 // ── Navbar ────────────────────────────────────────────────────────────────────
 function Navbar() {
-  const burgersFillRef  = useRef<HTMLSpanElement>(null);
-  const burgersBtnRef   = useRef<HTMLButtonElement>(null);
-  const burgersTextRef  = useRef<HTMLSpanElement>(null);
-  const menuFillRef     = useRef<HTMLSpanElement>(null);
-  const menuBtnRef      = useRef<HTMLButtonElement>(null);
-  const menuTextRef     = useRef<HTMLSpanElement>(null);
+  const burgersFillRef = useRef<HTMLSpanElement>(null);
+  const burgersBtnRef = useRef<HTMLButtonElement>(null);
+  const burgersTextRef = useRef<HTMLSpanElement>(null);
+  const menuFillRef = useRef<HTMLSpanElement>(null);
+  const menuBtnRef = useRef<HTMLButtonElement>(null);
+  const menuTextRef = useRef<HTMLSpanElement>(null);
 
   function handleBurgersEnter() {
     gsap.killTweensOf([burgersFillRef.current, burgersBtnRef.current, burgersTextRef.current]);
     gsap.to(burgersFillRef.current, { scaleY: 1, duration: 0.4, ease: "power3.out" });
-    gsap.to(burgersBtnRef.current,  { y: -6, duration: 0.35, ease: "back.out(3)" });
+    gsap.to(burgersBtnRef.current, { y: -6, duration: 0.35, ease: "back.out(3)" });
     gsap.to(burgersTextRef.current, { color: "#ffffff", duration: 0.2, ease: "none" });
   }
 
   function handleBurgersLeave() {
     gsap.killTweensOf([burgersFillRef.current, burgersBtnRef.current, burgersTextRef.current]);
     gsap.to(burgersFillRef.current, { scaleY: 0, duration: 0.3, ease: "power2.in" });
-    gsap.to(burgersBtnRef.current,  { y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+    gsap.to(burgersBtnRef.current, { y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
     gsap.to(burgersTextRef.current, { color: "#f91814", duration: 0.25, ease: "none", delay: 0.1 });
   }
 
   function handleMenuEnter() {
     gsap.killTweensOf([menuFillRef.current, menuBtnRef.current, menuTextRef.current]);
     gsap.to(menuFillRef.current, { scaleY: 1, duration: 0.4, ease: "power3.out" });
-    gsap.to(menuBtnRef.current,  { y: -6, duration: 0.35, ease: "back.out(3)" });
+    gsap.to(menuBtnRef.current, { y: -6, duration: 0.35, ease: "back.out(3)" });
     gsap.to(menuTextRef.current, { color: "#ffffff", duration: 0.2, ease: "none" });
   }
 
   function handleMenuLeave() {
     gsap.killTweensOf([menuFillRef.current, menuBtnRef.current, menuTextRef.current]);
     gsap.to(menuFillRef.current, { scaleY: 0, duration: 0.3, ease: "power2.in" });
-    gsap.to(menuBtnRef.current,  { y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
+    gsap.to(menuBtnRef.current, { y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" });
     gsap.to(menuTextRef.current, { color: "#1a1a1a", duration: 0.25, ease: "none", delay: 0.1 });
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-4 bg-[#f5e3cd]">
+    <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 sm:px-10 py-4">
       {/* Brand Logo */}
       <span
         className="font-modak select-none leading-none"
@@ -147,7 +147,7 @@ export default function HomePage() {
           });
         },
       });
-      
+
       tl1
         .delay(0.2)
         // Wiggle (fixing itself into place)
