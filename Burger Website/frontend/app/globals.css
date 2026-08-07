@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --background: #F5EBE1;
+  --foreground: #1a1a1a;
+  --brand-red: #D92B2B;
+  --brand-red-dark: #B91C1C;
+  --brand-yellow: #E8A317;
+  --brand-yellow-light: #F5C542;
+  --brand-cream: #F5EBE1;
+  --brand-cream-dark: #E8D5C4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-dark: var(--brand-red-dark);
+  --color-brand-yellow: var(--brand-yellow);
+  --color-brand-yellow-light: var(--brand-yellow-light);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-cream-dark: var(--brand-cream-dark);
+  --font-modak: var(--font-modak);
+  --font-mouse: var(--font-mouse-memoirs);
+  --font-grotesk: var(--font-space-grotesk);
+}
+
+/* ─── Smooth Scrolling ──────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Base Body ─────────────────────────────────────────────────────────────── */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* ─── Selection Color ───────────────────────────────────────────────────────── */
+::selection {
+  background: var(--brand-red);
+  color: white;
+}
