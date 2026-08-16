@@ -78,7 +78,8 @@ export default function ExperiencePage() {
         // 🛑 overflow-hidden HATA DIYA HAI SECTION SE
         <section 
             ref={sectionRef} 
-            className="relative bg-[#f91814] w-full min-h-screen flex flex-col items-center pt-24 pb-48"
+            // 🛑 FIX 1: pt-24 ko hata kar pt-32 sm:pt-48 md:pt-64 lg:pt-72 kiya hai taaki wave ke neeche gap bane
+            className="relative bg-[#f91814] w-full min-h-screen overflow-hidden flex flex-col items-center pt-32 sm:pt-48 md:pt-64 lg:pt-72 pb-48"
         >
             <style>{`
                 @keyframes wave-scroll {
@@ -87,20 +88,26 @@ export default function ExperiencePage() {
                 }
             `}</style>
 
-            {/* ── Top Wavy Border ── */}
-            <div className="absolute top-0 left-0 w-[200vw] h-12 sm:h-20 md:h-28 z-10 pointer-events-none">
+            {/* ── Top Wavy Border (DEEP & ORGANIC BEZIER CURVE) ── */}
+            {/* 🛑 FIX 2: h-12 ko badha kar h-24 se h-64 tak kiya hai taaki wave ka dip ekdum deep jaaye */}
+            <div className="absolute top-0 left-0 w-[200vw] h-24 sm:h-32 md:h-48 lg:h-64 z-10 pointer-events-none">
                 <svg 
-                    viewBox="0 0 1000 100" 
+                    viewBox="0 0 2000 300" 
                     preserveAspectRatio="none" 
                     className="w-full h-full"
-                    style={{ animation: "wave-scroll 8s linear infinite", willChange: "transform" }}
+                    // 🛑 FIX 3: Animation ko 15s kiya hai taaki wo heavy liquid ki tarah slowly aur smoothly flow kare
+                    style={{ animation: "wave-scroll 15s linear infinite", willChange: "transform" }}
                 >
-                    <path d="M 0 0 V 50 Q 125 100, 250 50 T 500 50 T 750 50 T 1000 50 V 0 Z" fill="#f5e3cd" />
+                    {/* Ye naya path hai jo ekdum deep gaddha (dip) aur steep rise banata hai */}
+                    <path 
+                        d="M 0 0 V 150 C 350 400, 650 -100, 1000 150 C 1350 400, 1650 -100, 2000 150 V 0 Z" 
+                        fill="#f5e3cd" 
+                    />
                 </svg>
             </div>
 
             {/* ── Typography Section ── */}
-            <div className="relative z-20 flex flex-col items-center mt-12 sm:mt-16 w-full px-4">
+            <div className="relative z-20 flex flex-col items-center w-full px-4">
                 <div className="relative mb-2 sm:mb-4 inline-block" style={{ transform: "rotate(-4deg)" }}>
                     <span 
                         className="font-modak absolute left-0 top-0 w-full leading-none text-center pointer-events-none select-none"
@@ -128,7 +135,6 @@ export default function ExperiencePage() {
                     FOOD THAT <br /> FEELS GOOD
                 </h2>
             </div>
-
             {/* ── Floating Stickers ── */}
             
             {/* Fries Sticker (Left) */}
@@ -214,22 +220,63 @@ export default function ExperiencePage() {
             </div>
 
             {/* ── Giant Central Burger ── */}
-            <div className="relative z-20 mt-10 w-full max-w-7xl mx-auto flex items-center justify-center">
-                <div className="absolute left-6 lg:left-12 bottom-12 lg:bottom-32 z-30 hidden sm:block text-left text-[#f5e3cd] font-mouse tracking-widest leading-none text-2xl lg:text-4xl">
+            <div className="relative z-20 mt-10 w-full flex items-center justify-center">
+                
+                {/* Left Text */}
+                <div className="absolute left-6 lg:left-5 bottom-12 lg:bottom-12 z-30 hidden sm:block text-left text-[#f5e3cd] font-mouse leading-[1.1] text-2xl lg:text-[2rem]">
                     450 KCAL <br/>
                     HIGH PROTEIN <br/>
                     FRESH INGREDIENTS
                 </div>
 
-                <div className="relative w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[60vw] aspect-square lg:aspect-[4/3] mx-auto z-20 drop-shadow-2xl">
+                <div className="relative w-full max-w-[90vw] md:max-w-[70vw] lg:max-w-[60vw] mx-auto z-20 drop-shadow-2xl">
                     <Image 
                         src="/images/burgerwithhands.webp" 
                         alt="Giant burger with hands" 
-                        fill 
+                        width={1200}
+                        height={900}
                         sizes="(max-width: 768px) 90vw, (max-width: 1024px) 70vw, 60vw"
-                        className="object-contain object-bottom"
+                        className="w-full h-auto object-contain"
                     />
 
+                    {/* ── Facial Features (Eyes, Eyebrows, Blush) ── */}
+                    <div className="absolute inset-0 pointer-events-none z-30">
+                        {/* Left Eye */}
+                        <div className="absolute top-[10%] left-[37%] w-[7%] h-[15%] bg-white rounded-[50%] shadow-lg">
+                            {/* Pupil */}
+                            <div className="absolute bottom-[20%] right-[15%] w-[45%] h-[50%] bg-black rounded-[50%]">
+                                {/* Highlight */}
+                                <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-white rounded-full"></div>
+                            </div>
+                            {/* Eyebrow */}
+                            <svg viewBox="0 0 100 50" className="absolute -top-[70%] left-[-20%] w-[140%] h-[80%] overflow-visible drop-shadow-md">
+                                <path d="M 10,40 Q 50,-15 90,40" stroke="white" strokeWidth="12" fill="none" strokeLinecap="round" />
+                            </svg>
+                            {/* Blush */}
+                            <svg viewBox="0 0 100 50" className="absolute -bottom-[30%] left-[10%] w-[120%] h-[60%] overflow-visible opacity-80">
+                                <path d="M 10,25 Q 25,5 40,25 T 70,25 T 100,25" stroke="#f91814" strokeWidth="8" fill="none" strokeLinecap="round" />
+                            </svg>
+                        </div>
+
+                        {/* Right Eye */}
+                        <div className="absolute top-[10%] right-[37%] w-[7%] h-[15%] bg-white rounded-[50%]  shadow-lg">
+                            {/* Pupil */}
+                            <div className="absolute bottom-[20%] right-[35%] w-[45%] h-[50%] bg-black rounded-[50%]">
+                                {/* Highlight */}
+                                <div className="absolute top-[20%] right-[20%] w-[30%] h-[30%] bg-white rounded-full"></div>
+                            </div>
+                            {/* Eyebrow */}
+                            <svg viewBox="0 0 100 50" className="absolute -top-[70%] left-[-20%] w-[140%] h-[80%] overflow-visible drop-shadow-md">
+                                <path d="M 10,40 Q 50,-15 90,40" stroke="white" strokeWidth="12" fill="none" strokeLinecap="round" />
+                            </svg>
+                            {/* Blush */}
+                            <svg viewBox="0 0 100 50" className="absolute -bottom-[30%] right-[10%] w-[120%] h-[60%] overflow-visible opacity-80" style={{ transform: 'scaleX(-1)' }}>
+                                <path d="M 10,25 Q 25,5 40,25 T 70,25 T 100,25" stroke="#f91814" strokeWidth="8" fill="none" strokeLinecap="round" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    {/* BOLD FLAVOUR Sticker */}
                     <div 
                         className="absolute bottom-[10%] right-[10%] lg:right-[5%] z-30 transform rotate-12"
                         style={{ width: "clamp(100px, 15vw, 180px)" }}
@@ -254,7 +301,8 @@ export default function ExperiencePage() {
                     </div>
                 </div>
 
-                <div className="absolute right-6 lg:right-12 bottom-12 lg:bottom-32 z-30 hidden sm:block text-right text-[#f5e3cd] font-mouse tracking-widest leading-none text-2xl lg:text-4xl">
+                {/* Right Text */}
+                <div className="absolute right-6 lg:right-5 bottom-12 lg:bottom-12 z-30 hidden sm:block text-right text-[#f5e3cd] font-mouse leading-[1.1] text-2xl lg:text-[2rem]">
                     100% ORGANIC <br/>
                     ZERO GUILT <br/>
                     TRUE TASTE
@@ -271,10 +319,6 @@ export default function ExperiencePage() {
                 >
                     <path d="M 0 0 V 50 Q 125 100, 250 50 T 500 50 T 750 50 T 1000 50 V 0 Z" fill="#f91814" />
                 </svg>
-            </div>
-            
-            <div className="w-full h-[60vh] absolute top-full left-0 bg-neutral-900 -z-10 flex items-center justify-center">
-                <p className="text-white/50 font-grotesk text-xl">Photo Background Section Goes Here</p>
             </div>
         </section>
     );

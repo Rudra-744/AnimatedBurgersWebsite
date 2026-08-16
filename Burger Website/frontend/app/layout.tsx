@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { modak, mouseMemoirs, spaceGrotesk } from "@/lib/fonts";
 import { SITE_CONFIG } from "@/lib/constants";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 // ─── SEO Metadata ──────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -90,7 +91,11 @@ export default function RootLayout({
       lang="en"
       className={`${modak.variable} ${mouseMemoirs.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }
